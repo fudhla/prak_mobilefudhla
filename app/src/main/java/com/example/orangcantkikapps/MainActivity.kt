@@ -8,13 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.app.AlertDialog
 import com.example.orangcantkikapps.databinding.ActivityFourthBinding
 import com.example.orangcantkikapps.databinding.ActivityMainBinding
 import com.example.orangcantkikapps.databinding.ActivityThirdBinding
 import com.example.orangcantkikapps.pertemuan_3.ThirdResultActivity
 import com.example.orangcantkikapps.pertemuan_4.FourthActivity
-
-
+import com.example.orangcantkikapps.pertemuan_6.AuthActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +38,28 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("asal", "Rumbai")
             intent.putExtra("usia", 25)
             startActivity(intent)
+        }
+        binding.btnLogout.setOnClickListener {
+
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Apakah Anda yakin ingin logout?")
+                .setPositiveButton("Ya") { _, _ ->
+
+                    val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+
+                    val editor = sharedPref.edit()
+
+                    editor.clear()
+                    editor.apply()
+
+                    val intent = Intent(this, AuthActivity::class.java)
+                    startActivity(intent)
+
+                    finish()
+                }
+                .setNegativeButton("Tidak", null)
+                .show()
         }
     }
 }
