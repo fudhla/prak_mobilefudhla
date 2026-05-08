@@ -36,7 +36,7 @@ class AuthActivity : AppCompatActivity() {
 
         if (isLogin) {
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, BaseActivity::class.java)
             startActivity(intent)
 
             finish()
@@ -58,7 +58,7 @@ class AuthActivity : AppCompatActivity() {
 
                 editor.apply()
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, BaseActivity::class.java)
                 startActivity(intent)
 
                 finish()
