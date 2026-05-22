@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/baksosapi"
-        android:text="Mau makan bakso dirumah Uni"
+        android:text="ini adalah fula fula sayang abang"
         android:textAlignment="center"
         android:textSize="40dp" />
 
