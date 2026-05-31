@@ -13,49 +13,61 @@ import com.example.orangcantkikapps.AuthActivity
 import com.example.orangcantkikapps.Home.pertemuan_4.FourthActivity
 import com.example.orangcantkikapps.Home.pertemuan_7.SeventhActivity
 import com.example.orangcantkikapps.Home.pertemuan_9.NinthActivity
+import com.example.orangcantkikapps.Home.pertemuan_10.TenthActivity // 1. IMPORT TENTHACTIVITY DI SINI
 import com.example.orangcantkikapps.R
 import com.example.orangcantkikapps.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState) // Tambahkan super call jika belum ada
+
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             title = "Home"
         }
         val sharedPref = requireContext().getSharedPreferences("user_pref", MODE_PRIVATE)
-        binding.btnToFourth.setOnClickListener {
 
+        binding.btnToFourth.setOnClickListener {
             val intent = Intent(requireContext(), FourthActivity::class.java)
             intent.putExtra("nama", "Politeknik Caltex Riau")
             intent.putExtra("asal", "Rumbai")
             intent.putExtra("usia", 25)
             startActivity(intent)
         }
-        binding.btnToSeventh.setOnClickListener {
 
+        binding.btnToSeventh.setOnClickListener {
             val intent = Intent(requireContext(), SeventhActivity::class.java)
             startActivity(intent)
         }
-        binding.btnLogout.setOnClickListener {
 
+        binding.btnToNinth.setOnClickListener {
+            val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 2. TAMBAHKAN LOGIKA BUTTON PERTEMUAN 10 DI SINI
+        binding.btnToTenth.setOnClickListener {
+            val intent = Intent(requireContext(), TenthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Logout")
                 .setMessage("Apakah Anda yakin ingin logout?")
                 .setPositiveButton("Ya") { _, _ ->
-
                     val editor = sharedPref.edit()
-
                     editor.clear()
                     editor.apply()
 
@@ -66,11 +78,10 @@ class HomeFragment : Fragment() {
                 .setNegativeButton("Tidak", null)
                 .show()
         }
-        binding.btnToNinth.setOnClickListener {
-
-            val intent = Intent(requireContext(), NinthActivity::class.java)
-            startActivity(intent)
-        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
