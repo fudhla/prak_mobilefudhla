@@ -12,6 +12,8 @@ activityKtx = "1.13.0"
 core = "1.18.0"
 carUiLib = "2.6.0"
 gridlayout = "1.1.0"
+# Tambahan versi dotsindicator
+dotsindicator = "5.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,7 +28,8 @@ androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", ve
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
 car-ui-lib = { group = "com.android.car.ui", name = "car-ui-lib", version.ref = "carUiLib" }
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
+# Tambahan library dotsindicator
+dotsindicator = { group = "com.tbuonomo", name = "dotsindicator", version.ref = "dotsindicator" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-

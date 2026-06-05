@@ -4,85 +4,236 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#74FAFF"
+    android:background="#F1F5F9"
     tools:context=".Home.HomeFragment">
 
+    <!-- Header Background Wave (Tinggi dikurangi sedikit agar tidak menutupi teks) -->
     <View
         android:id="@+id/background_header"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="140dp"
         android:background="@drawable/bg_header_wave"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <!-- Custom Modern Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/biru"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <!-- SECTION JUDUL DASHBOARD (Diturunkan ke area abu-abu dan warna diubah menjadi gelap agar kontras) -->
+    <TextView
+        android:id="@+id/tvDashboardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Dashboard Praktikum"
+        android:fontFamily="sans-serif-black"
+        android:textSize="26sp"
+        android:textColor="#1E293B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/background_header" />
+
+    <TextView
+        android:id="@+id/tvDashboardSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Pemrograman Mobile • Tugas Mandiri"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="13sp"
+        android:textColor="#64748B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDashboardTitle" />
+
+    <!-- TOMBOL LOGOUT (Diselaraskan posisinya dengan judul di area abu-abu) -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:text="Logout"
-        app:layout_constraintBottom_toTopOf="@+id/btnToNinth"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#EF4444"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDashboardSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintTop_toTopOf="@+id/tvDashboardTitle" />
 
-    <Button
-        android:id="@+id/btnToNinth"
-        android:layout_width="wrap_content"
+    <!-- GRID LAYOUT UNTUK MENU PERTEMUAN -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayoutMenu"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Pertemuan_9"
-        app:layout_constraintBottom_toTopOf="@+id/btnToTenth"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        app:columnCount="2"
+        app:rowCount="2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogout"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDashboardSubtitle">
 
-    <Button
-        android:id="@+id/btnToTenth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pertemuan 10"
-        app:layout_constraintBottom_toTopOf="@+id/btnToSeventh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToNinth"
-        app:layout_constraintVertical_bias="0.5" />
+        <!-- Pertemuan 9 Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:strokeWidth="0dp"
+            app:layout_columnWeight="1">
+            <Button
+                android:id="@+id/btnToNinth"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Pertemuan 9"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1E293B"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="12dp"/>
+        </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/btnToSeventh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seven"
-        app:layout_constraintBottom_toTopOf="@+id/btnToFourth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToTenth"
-        app:layout_constraintVertical_bias="0.5" />
+        <!-- Pertemuan 10 Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:strokeWidth="0dp"
+            app:layout_columnWeight="1">
+            <Button
+                android:id="@+id/btnToTenth"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Pertemuan 10"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1E293B"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="12dp"/>
+        </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/btnToFourth"
-        android:layout_width="wrap_content"
+        <!-- Pertemuan 7 Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:strokeWidth="0dp"
+            app:layout_columnWeight="1">
+            <Button
+                android:id="@+id/btnToSeventh"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Pertemuan 7"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1E293B"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="12dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Pertemuan 4 Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:strokeWidth="0dp"
+            app:layout_columnWeight="1">
+            <Button
+                android:id="@+id/btnToFourth"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Pertemuan 4"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1E293B"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="12dp"/>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.gridlayout.widget.GridLayout>
+
+    <!-- RETROFIT CAT FACT SECTION -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCatFact"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Fourth"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="26dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToSeventh"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayoutMenu">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvCatFactTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 Fun Cat Fact"
+                android:textColor="#0F172A"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvCatFact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Loading cat fact..."
+                android:textAlignment="center"
+                android:textColor="#475569"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingMultiplier="1.2"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Refresh Fact"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:backgroundTint="#3B82F6"
+                app:cornerRadius="20dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
