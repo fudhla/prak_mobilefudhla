@@ -1,239 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F1F5F9"
+    android:background="#F8FAFC"
     tools:context=".Home.HomeFragment">
 
-    <!-- Header Background Wave (Tinggi dikurangi sedikit agar tidak menutupi teks) -->
-    <View
-        android:id="@+id/background_header"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:background="@drawable/bg_header_wave"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <!-- Custom Modern Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- SECTION JUDUL DASHBOARD (Diturunkan ke area abu-abu dan warna diubah menjadi gelap agar kontras) -->
-    <TextView
-        android:id="@+id/tvDashboardTitle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Dashboard Praktikum"
-        android:fontFamily="sans-serif-black"
-        android:textSize="26sp"
-        android:textColor="#1E293B"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/background_header" />
+        android:background="#673AB7">
 
-    <TextView
-        android:id="@+id/tvDashboardSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:text="Pemrograman Mobile • Tugas Mandiri"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="13sp"
-        android:textColor="#64748B"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDashboardTitle" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Home"
+            app:titleTextColor="#FFFFFF" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- TOMBOL LOGOUT (Diselaraskan posisinya dengan judul di area abu-abu) -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="Logout"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:backgroundTint="#EF4444"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDashboardSubtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvDashboardTitle" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!-- GRID LAYOUT UNTUK MENU PERTEMUAN -->
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayoutMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        app:columnCount="2"
-        app:rowCount="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDashboardSubtitle">
-
-        <!-- Pertemuan 9 Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:strokeWidth="0dp"
-            app:layout_columnWeight="1">
-            <Button
-                android:id="@+id/btnToNinth"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Pertemuan 9"
-                android:fontFamily="sans-serif-bold"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#1E293B"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:cornerRadius="12dp"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Pertemuan 10 Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:strokeWidth="0dp"
-            app:layout_columnWeight="1">
-            <Button
-                android:id="@+id/btnToTenth"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Pertemuan 10"
-                android:fontFamily="sans-serif-bold"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#1E293B"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:cornerRadius="12dp"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Pertemuan 7 Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:strokeWidth="0dp"
-            app:layout_columnWeight="1">
-            <Button
-                android:id="@+id/btnToSeventh"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Pertemuan 7"
-                android:fontFamily="sans-serif-bold"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#1E293B"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:cornerRadius="12dp"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Pertemuan 4 Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:strokeWidth="0dp"
-            app:layout_columnWeight="1">
-            <Button
-                android:id="@+id/btnToFourth"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Pertemuan 4"
-                android:fontFamily="sans-serif-bold"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#1E293B"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:cornerRadius="12dp"/>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.gridlayout.widget.GridLayout>
-
-    <!-- RETROFIT CAT FACT SECTION -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCatFact"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="26dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayoutMenu">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvCatFactTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="💡 Fun Cat Fact"
-                android:textColor="#0F172A"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-black"
-                android:layout_marginBottom="12dp"/>
-
-            <TextView
-                android:id="@+id/tvCatFact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Loading cat fact..."
-                android:textAlignment="center"
-                android:textColor="#475569"
-                android:textSize="15sp"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingMultiplier="1.2"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRefresh"
+                android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Refresh Fact"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                app:backgroundTint="#3B82F6"
-                app:cornerRadius="20dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:text="Selamat Datang Dunia!"
+                android:fontFamily="sans-serif-bold"
+                android:textSize="24sp"
+                android:textColor="#333333"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToSecond"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Pertemuan 2"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#D32F2F"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToThird"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 3"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#388E3C"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToSecond" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToFourth"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 4"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#FF5722"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToThird" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToFifth"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 5"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#FFEB3B"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToFourth" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToSeventh"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 7"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#283593"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToFifth" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToNinth"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 9"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#FFA726"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToSeventh" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToTenth"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pertemuan 10"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#7E57C2"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToNinth" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Logout"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#FF1744"
+                app:cornerRadius="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnToTenth" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCatFact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeWidth="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvCatFactTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💡 Fun Cat Fact"
+                        android:textColor="#0F172A"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvCatFact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="&quot;Loading cat fact...&quot;"
+                        android:textColor="#475569"
+                        android:textSize="14sp"
+                        android:lineSpacingMultiplier="1.2"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRefresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Refresh"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#7E57C2"
+                        app:cornerRadius="24dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvLabelGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Alejandro Escamilla"
+                android:textColor="#555555"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardCatFact" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelGallery" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

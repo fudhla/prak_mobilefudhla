@@ -7,16 +7,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager // Import untuk mode Grid
+import androidx.recyclerview.widget.LinearLayoutManager // Import untuk mode List
 import com.example.orangcantkikapps.AuthActivity
 import com.example.orangcantkikapps.Home.pertemuan_4.FourthActivity
 import com.example.orangcantkikapps.Home.pertemuan_7.SeventhActivity
 import com.example.orangcantkikapps.Home.pertemuan_9.NinthActivity
-import com.example.orangcantkikapps.Home.pertemuan_10.TenthActivity // 1. IMPORT TENTHACTIVITY DI SINI
+import com.example.orangcantkikapps.Home.pertemuan_10.TenthActivity
+import com.example.orangcantkikapps.Home.photo.PhotoAdapter
 import com.example.orangcantkikapps.R
 import com.example.orangcantkikapps.data.api.CatFactApiClient
+import com.example.orangcantkikapps.data.api.PhotoApiClient
 import com.example.orangcantkikapps.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
@@ -33,7 +38,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState) // Tambahkan super call jika belum ada
+        super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
@@ -59,14 +64,16 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        // 2. TAMBAHKAN LOGIKA BUTTON PERTEMUAN 10 DI SINI
         binding.btnToTenth.setOnClickListener {
             val intent = Intent(requireContext(), TenthActivity::class.java)
             startActivity(intent)
         }
+
         binding.btnRefresh.setOnClickListener {
+            binding.tvCatFact.text = "Loading cat fact..."
             loadCatFact()
         }
+
         binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Logout")
@@ -83,7 +90,10 @@ class HomeFragment : Fragment() {
                 .setNegativeButton("Tidak", null)
                 .show()
         }
+
+        // Memanggil fungsi load data API saat halaman dibuat
         loadCatFact()
+        loadPhoto()
     }
 
     private fun loadCatFact() {
@@ -96,5 +106,32 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    // Penambahan fungsi loadPhoto() sesuai modul praktikum
+    private fun loadPhoto() {
+        lifecycleScope.launch {
+            try {
+                val photos = PhotoApiClient.apiService.getPhotos()
+                val adapter = PhotoAdapter(photos)
+                binding.rvGallery.adapter = adapter
+
+                /** List Tampil Vertical*/
+                binding.rvGallery.layoutManager = LinearLayoutManager(requireContext())
+
+                /** List Tampil Horizontal */
+                //binding.rvGallery.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+                /** List Tampil Grid */
+                //binding.rvGallery.layoutManager = GridLayoutManager(requireContext(), 2)
+
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
